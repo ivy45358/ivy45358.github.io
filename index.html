@@ -1,94 +1,63 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>程子芸的CV</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="mystyle.css">
-    </head>
-    <body>
-        <div id="a">
-            <center>
-                <h1>履歷</h1>
-                <ol>
-                    <li><h2><a href="#a">基本資料</a></h2></li><!--連結在不同情況會有不同顏色-->
-                    <li><h2><a href="#b">學歷</a></h2></li>
-                    <li><h2><a href="#c">自傳</a></h2></li>
-                </ol>
-                <br></br>
-            </center>
-        </div>
-        <div>
-            <center>
-                <button type="button" onclick="f()">change mode</button>
-            </center>
-            <br></br>
-        </div>
-        <div id="b">
-            <center>
-                <img src="me.jpeg" alt = 'this is me.' width="40%">
-                <table>
-                    <thead>
-                        <th colspan="4">基本資料</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>姓名</td>
-                            <td>程子芸</td>
-                            <td>年齡</td>
-                            <td>22</td>
-                        </tr>
-                        <tr>
-                            <td>生日</td>
-                            <td>89/12/07</td>
-                            <td>星座</td>
-                            <td>射手座</td>
-                        </tr>
-                        <tr>
-                            <td>電話</td>
-                            <td>0123456789</td>
-                            <td>Email</td>
-                            <td>aaabbc.gmail.com</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </center>
-            <br><br><br><br>
-            <hr>
-        </div>
-        <div id="c">
-            <center>
-                <h3>學歷</h3>
-                <ul>
-                    <li><a href = "https://www.ncu.edu.tw/tw/index.html" target=" _blank">中央大學</a>    資管系    就學中</li>
-                    <li><a href = "https://www.nycu.edu.tw" target=" _blank">陽明大學</a>    護理系    已休學</li>
-                    <li><a href = "https://www.yphs.tp.edu.tw/tc_index.asp" target="_blank">延平中學</a>    普通科    已畢業</li>
-                </ul>
-            </center>
-            <br><br><br><br>
-            <hr>
-        </div>
-        <div id="d">
-            <center>
-                <h3>自傳</h3>
-                <p>哈囉我叫程子芸，是一位多才多藝、熱情且具有創造力的人。我對於學習新事物充滿熱情，並且具有快速學習和適應的能力。我擅長溝通和團隊合作，並樂於與不同背景的人合作。在過去的經驗中，我培養了良好的組織能力和解決問題的能力。我喜歡挑戰自己，並持續追求個人和職業的成長。我相信通過不斷學習和不斷挑戰自己，我可以實現更多的目標並取得成功。</p>
-            </center>
-        </div>
-        <div>
-            <center>
-                <h3>列印履歷</h3>
-                <button type="button" onclick="print()">Print</button>
-            </center>
-        </div>
-        <script>
-            function f(){
-                var element = document.body;
-                element.classList.toggle("change");
-            }
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="mystyle.css">
+  <title>匯率轉換計算機</title>
+</head>
+<body>
+  <h1>匯率轉換計算機</h1>
+  <p>請輸入台幣金額：</p>
+  <input id="inputAmount" type="text">
+  <br><br>
+  <input id="btn" type="button" value="提交" class="button">
+  <input type="reset" value="重置" class="button" onclick="clearForm()">
+  <hr>
+  <p>結果：<span class="summary"></span></p>
+  <ul>
+    <li>美金：<span id="usd" class="converted-amount"></span> 美元</li>
+    <li>歐元：<span id="eur" class="converted-amount"></span> 歐元</li>
+    <li>日圓：<span id="jpy" class="converted-amount"></span> 日圓</li>
+    <li>韓元：<span id="krw" class="converted-amount"></span> 韓元</li>
+    <li>澳幣：<span id="aud" class="converted-amount"></span> 澳幣</li>
+  </ul>
 
-            onlaod = showmsg();
-            function showmsg(){
-                alert('歡迎來看我的履歷\n我是程子芸');
-            }
-        </script>
-    </body>
+  <script>
+ document.getElementById('btn').onclick = function() {
+  var inputAmount = parseFloat(document.getElementById('inputAmount').value);
+
+  if (isNaN(inputAmount)) {
+    alert("請輸入有效數值！");
+    clearForm();
+    return;
+  }
+  if (inputAmount<=0) {
+    alert("請輸入有效數值！");
+    clearForm();
+    return;
+  }
+
+  var usd = (inputAmount / 30.24).toFixed(2);
+  var eur = (inputAmount / 36.63).toFixed(2);
+  var jpy = (inputAmount / 0.21).toFixed(2);
+  var krw = (inputAmount / 0.02).toFixed(2);
+  var aud = (inputAmount / 19.67).toFixed(2);
+
+  document.getElementById('usd').textContent = usd;
+  document.getElementById('eur').textContent = eur;
+  document.getElementById('jpy').textContent = jpy;
+  document.getElementById('krw').textContent = krw;
+  document.getElementById('aud').textContent = aud;
+};
+
+function clearForm() {
+  document.getElementById('inputAmount').value = '';
+  document.getElementById('usd').textContent ='';
+  document.getElementById('eur').textContent = '';
+  document.getElementById('jpy').textContent = '';
+  document.getElementById('krw').textContent = '';
+  document.getElementById('aud').textContent = '';
+}
+  </script>
+</body>
 </html>
